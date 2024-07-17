@@ -1,0 +1,7 @@
+#nav{
+    flex: content;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+.nav-link {
+color:aliceblue;}
