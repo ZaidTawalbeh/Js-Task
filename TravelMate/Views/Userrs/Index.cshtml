@@ -1,0 +1,77 @@
+﻿@model IEnumerable<TravelMate.Models.Userr>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Users Page</title>
+</head>
+<body>
+<p>
+        <button type="button" class="btn btn-success">
+            <a asp-action="Create">Create New</a>
+        </button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Fname)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Lname)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Emale)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>
+            <th class="text-center"></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Fname)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Lname)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Emale)
+            </td>
+            <td class="text-center">
+                <img src=@Url.Content("~/Images/" + item.ImagePath)
+                             asp-append-version="true" style="border-radius:20%;"
+                             width="100" height="100" />
+            </td>
+            <td class="text-center">
+                 <button type="button" class="btn btn-info">
+                        <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a>
+                    </button>
+                    <button type="button" class="btn btn-warning">
+                        <a asp-action="Details" asp-route-id="@item.UserId">Details</a>
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+                    </button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

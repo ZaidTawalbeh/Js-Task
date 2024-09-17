@@ -1,0 +1,29 @@
+﻿@model TravelMate.Models.Testmonial
+
+@{
+    ViewData["Title"] = "Add Testimonial";
+   Layout = "~/Views/Shared/_UserLayout.cshtml";
+    
+}
+
+
+
+
+<link href="~/testmonail/site.css" rel="stylesheet" />
+<div class="testimonial-container">
+    <form asp-action="AddTestimonial" method="post" class="testimonial-form">
+        <div class="form-group">
+            <label asp-for="Msg" class="control-label">Comment</label>
+            <textarea asp-for="Msg" class="form-control" placeholder="Your Testmonial"></textarea>
+            <span asp-validation-for="Msg" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn-custom" />
+        </div>
+    </form>
+
+</div>
+@if (ViewData.ModelState.ContainsKey(string.Empty))
+{
+    <p style="color:red">@ViewData.ModelState[string.Empty].Errors.FirstOrDefault()?.ErrorMessage</p>
+}

@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to TravelMate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .register {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .login {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .home {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to TravelMate</h1>
+        <p>This service is available exclusively to registered users. Please register now to use this service and explore other features on our website.</p>
+        <p>Thank you</p>
+        <div class="button-container">
+            <a asp-controller="Log" asp-action="Register"><button class="button register">Register</button></a>
+            <a asp-controller="Log" asp-action="Login"><button class="button login">Login</button></a>
+            <a asp-action="Index"><button class="button home">Return to Home</button></a>
+        </div>
+    </div>
+</body>
+</html>

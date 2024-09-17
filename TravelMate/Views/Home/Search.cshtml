@@ -1,0 +1,73 @@
+﻿@model IEnumerable<TravelMate.Models.Hotel>
+@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+
+}
+<h2 class="text-center">  Results Search : </h2>
+
+<style>
+    .contaner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+</style>
+@if (!Model.Any())
+{
+    <div class="contaner">
+        <p>No hotels found.</p>
+    </div>
+}
+else
+{
+    <table class="table contaner">
+        <thead>
+            <tr>
+                <th>The is the hotel he is lookimg for : </th>
+            </tr>
+        </thead>
+        <tbody>
+            <div class="row g-4 justify-content-center">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="package-item">
+                            <div class="overflow-hidden">
+                                <img src=@Url.Content("~/Images/"+item.ImagePath) alt="" asp-append-version="true" width="100%" height="300">
+                            </div>
+                            <div class="d-flex border-bottom">
+                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>Indonesia</small>
+                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>3 days</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
+                            </div>
+                            <div class="text-center p-4">
+                                <h3>@item.Hotelname</h3>
+                                <div class="mb-3">
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small class="fa fa-star text-primary"></small>
+                                </div>
+                                <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
+                                <div class="d-flex justify-content-center mb-2">
+                                    <a asp-action="GetRoomByHotelId" asp-route-id="@item.HotelId" class="btn_3">View Hotel "></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}

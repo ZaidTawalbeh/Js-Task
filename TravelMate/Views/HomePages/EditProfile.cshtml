@@ -1,0 +1,64 @@
+﻿@model TravelMate.Models.Userr
+
+@{
+    ViewData["Title"] = "EditProfile";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+}
+
+<h1 class="text-center"> Edit User Profile</h1>
+
+<hr />
+<div class="row" style="display:flex; justify-content:center">
+    <div class="col-md-4">
+        <form asp-action="EditProfile" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UserId" />
+            <div class="form-group">
+                <label asp-for="Fname" class="control-label"></label>
+                <input asp-for="Fname" class="form-control" required />
+                <span asp-validation-for="Fname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lname" class="control-label"></label>
+                <input asp-for="Lname" class="form-control" required />
+                <span asp-validation-for="Lname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" required />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Emale" class="control-label"></label>
+                <input asp-for="Emale" class="form-control" type="email"  required/>
+                <span asp-validation-for="Emale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" accept="Image/*" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="userName"><i class="zmdi zmdi-email"></i></label>
+                <input type="text" name="userName" id="userName" class="form-control" placeholder="User Name" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password"><i class="zmdi zmdi-lock"></i></label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required  />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary rounded-pill py-2 px-4" />
+                <a class="btn btn-primary rounded-pill py-2 px-4" asp-controller="HomePages" asp-action="Profile">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@* @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+ *@

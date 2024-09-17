@@ -1,0 +1,138 @@
+﻿@model PaymentDetails
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+ <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        padding: 0;
+        margin: 0;
+    }
+
+    .payment-form {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    h2 {
+        color: #333;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+            .form-group input:focus {
+                border-color: #007bff;
+            }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 6rem;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: #5cb85c;
+        border-color: #5cb85c;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #4cae4c;
+            border-color: #4cae4c;
+        }
+
+    .btn-back {
+        background-color: #5cb85c;
+        border-color: #5cb85c;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        text-align: center;
+        display: inline-block;
+        width: 100px;
+        margin-top: 10px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-back:hover {
+            background-color: #4cae4c;
+            border-color: #4cae4c;
+        }
+
+        .btn-back:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 174, 76, 0.5);
+        }
+
+ </style>
+
+<h2 style="text-align: center; margin-bottom: 20px;">Enter Card Details</h2>
+
+<div class="payment-form">
+    <form asp-action="Pay" method="post">
+        <div class="form-group">
+            <label for="CardNumber">Card Number:</label>
+            <input type="text" id="CardNumber" name="CardNumber" required />
+        </div>
+        <div class="form-group">
+            <label for="ExpirationDate">Expiration Date:</label>
+            <input type="date" id="ExpirationDate" name="ExpirationDate" required />
+        </div>
+
+        <input type="hidden" name="UserId" value="@Model.UserId" />
+        <input type="hidden" name="TotalPrice" value="@Model.TotalPrice" />
+        <input type="hidden" name="Reservation.RoomId" value="@Model.Reservation.RoomId" />
+        <input type="hidden" name="Reservation.Checkindate" value="@Model.Reservation.Checkindate" />
+        <input type="hidden" name="Reservation.Checkoutdate" value="@Model.Reservation.Checkoutdate" />
+
+        <button type="submit" class="btn-primary">Pay</button>
+        <a asp-action="UserHome" class="btn-back">Back</a>
+
+    </form>
+
+</div>
+
+
+@if (ViewData.ModelState.ContainsKey(string.Empty))
+{
+    <p style="color:red">@ViewData.ModelState[string.Empty].Errors.FirstOrDefault()?.ErrorMessage</p>
+}

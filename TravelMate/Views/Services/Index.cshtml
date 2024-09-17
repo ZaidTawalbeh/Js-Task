@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TravelMate.Models.Service>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Services Page</title>
+</head>
+<body>
+<p>
+        <button type="button" class="btn btn-success">
+            <a asp-action="Create">Create New</a>
+        </button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Servicename)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Servicedescription)
+            </th>
+            <th class="text-center"></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Servicename)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Servicedescription)
+            </td>
+            <td class="text-center">
+                    <button type="button" class="btn btn-info">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    </button>
+                    <button type="button" class="btn btn-warning">
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

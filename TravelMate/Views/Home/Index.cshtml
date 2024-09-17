@@ -1,0 +1,332 @@
+﻿@model IEnumerable<Hotel>
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    var me = Url.Content("~/Images/" + ViewBag.logo);
+
+}
+
+
+<!-- Package Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Hotels</h6>
+            <h1 class="mb-5">Awesome Hotels</h1>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="package-item">
+                        <div class="overflow-hidden">
+                            <img src=@Url.Content("~/Images/"+item.ImagePath) alt="" asp-append-version="true" width="100%" height="300">
+                        </div>
+                        <div class="d-flex border-bottom">
+                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>Jordan</small>
+                        </div>
+                        <div class="text-center p-4">
+                            <h3>@item.Hotelname</h3>
+                            <div class="mb-3">
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                            </div>
+                            <p>We always strive for your comfort. Book your room now!</p>
+                            <div class="d-flex justify-content-center mb-2">
+                                <a asp-action="GetRoomByHotelId" asp-route-id="@item.HotelId" class="btn_3">View Room List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+<!-- Package End -->
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Services</h6>
+            <h1 class="mb-5">Our Services</h1>
+        </div>
+        <div class="row g-4">
+            @foreach (var item in (IEnumerable < Service >) ViewData["service"])
+            {
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item rounded pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-globe text-primary mb-4"></i>
+                            <h5>@item.Servicename</h5>
+                            <p>@item.Servicedescription</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Our Events -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Events</h6>
+            <h1 class="mb-5">Our Events</h1>
+        </div>
+        <div class="row g-4" style="display:flex ; justify-content:center; align-items:center">
+            @foreach (var item in ViewBag.events)
+            {
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src=@item.ImagePath alt="">
+                        </div>
+                        <div class="text-center p-4">
+                            <i class="fa-regular fa-calendar-days"></i>
+                            <h5 class="mb-0">@item.Eventname</h5>
+                            <small>@item.Eventdescription</small>
+                            <div>
+
+                                <h6> Hotel Name : @item.Hotel.Hotelname </h6>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<!-- Team End -->
+<!-- About Start -->
+
+<div class="container-xxl py-5" id="about">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="img-fluid position-absolute w-100 h-100" src=@Url.Content("~/Images/"+ViewBag.Image) alt="" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
+                <h1 class="mb-4" style="display:flex">
+                    Welcome to <img src="@me" width="100" height="100" />
+                </h1>
+                <p class="mb-4">@ViewBag.pAbout </p>
+                <div class="row gy-2 gx-4 mb-4">
+                    <div class="col-sm-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>First Class Flights</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Handpicked Hotels</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>5 Star Accommodations</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Latest Model Vehicles</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>150 Premium City Tours</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>24/7 Service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- About End -->
+        <!-- Testimonial Start -->
+        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s" id="testmon">
+            <div class="container">
+                <div class="text-center">
+                    <h6 class="section-title bg-white text-center text-primary px-3">Testimonial</h6>
+                    <h1 class="mb-5">Our Clients Say!!!</h1>
+                </div>
+                <div class="owl-carousel testimonial-carousel position-relative">
+
+                    @if (Model != null)
+                    {
+                        @foreach (var item in ViewBag.Testmonial)
+                        {
+                            <div class="testimonial-item bg-white text-center border p-4">
+                                <img class="bg-white rounded-circle shadow p-1 mx-auto mb-3" src=@Url.Content("~/Images/"+item.User.ImagePath) style="width: 80px; height: 80px;">
+                                <h5 class="mb-0">@item.User.Fname @item.User.Lname</h5>
+                                <p>@item.User.Emale</p>
+                                <p class="mb-0">@item.Msg</p>
+                            </div>
+                        }
+
+                    }
+                    else
+                    {
+                        <p>No testimonials available.</p>
+                    }
+                </div>
+
+            </div>
+        </div>
+        <!-- Testimonial End -->
+        <!-- Contact Start -->
+
+        <div class="container-xxl py-5" id="contact">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title bg-white text-center text-primary px-3">Contact Us</h6>
+                    <h1 class="mb-5">Contact For Any Query</h1>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <h5>Get In Touch</h5>
+                        <p class="mb-4">We are here to help! Feel free to send us any questions you may have, our team is ready to answer your questions and provide support at any time.</p>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
+                                <i class="fa fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="text-primary">Office</h5>
+                                <p class="mb-0">@ViewBag.location</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
+                                <i class="fa fa-phone-alt text-white"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="text-primary">Mobile</h5>
+                                <p class="mb-0">@ViewBag.phone</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
+                                <i class="fa fa-envelope-open text-white"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="text-primary">Email</h5>
+                                <p class="mb-0">@ViewBag.email</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                <form method="post" action="/Home/SendMessage">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
+                                <label for="name">Your Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Your Email">
+                                <label for="email">Your Email</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+                                <label for="subject">Subject</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a message here" id="message" name="message" style="height: 100px"></textarea>
+                                <label for="message">Message</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                        </div>
+                    </div>
+                </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+@*         <div class="container-xxl py-5" id="contact">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title bg-white text-center text-primary px-3">Contact Us</h6>
+                    <h1 class="mb-5">Contact For Any Query</h1>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <h5>Get In Touch</h5>
+                        <p class="mb-4">We are here to help! Feel free to send us any questions you may have, our team is ready to answer your questions and provide support at any time.</p>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
+                                <i class="fa fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="text-primary">Office</h5>
+                                <p class="mb-0">Jordan - Amman</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
+                                <i class="fa fa-phone-alt text-white"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="text-primary">Mobile</h5>
+                                <p class="mb-0">+9962791805548</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
+                                <i class="fa fa-envelope-open text-white"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="text-primary">Email</h5>
+                                <p class="mb-0">info@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                        <label for="name">Your Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                        <label for="email">Your Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                        <label for="subject">Subject</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
+                                        <label for="message">Message</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> *@
+        <!-- Contact End -->

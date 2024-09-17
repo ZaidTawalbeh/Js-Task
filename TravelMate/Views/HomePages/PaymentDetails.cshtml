@@ -1,0 +1,122 @@
+﻿@model PaymentDetails
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+ <style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f9;
+        padding: 0;
+        margin: 0;
+    }
+
+    .payment-heading {
+        font-size: 28px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .payment-details {
+        max-width: 600px;
+        margin: 0 auto 30px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .payment-details p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #555;
+            line-height: 1.6;
+        }
+
+            .payment-details p span {
+                font-weight: bold;
+                color: #000;
+            }
+
+    .payment-form {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 6rem;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: #5cb85c;
+        border-color: #5cb85c;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #4cae4c;
+            border-color: #4cae4c;
+        }
+
+    .btn-back {
+        background-color: #5cb85c;
+        border-color: #5cb85c;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        text-align: center;
+        display: inline-block;
+        width: 100px;
+        margin-top: 10px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-back:hover {
+            background-color: #4cae4c;
+            border-color: #4cae4c;
+        }
+
+        .btn-back:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 174, 76, 0.5);
+        }
+
+ </style>
+
+<h2 class="payment-heading">Payment Details</h2>
+
+<div class="payment-details">
+    <p><span>Room ID:</span> @Model.Reservation.RoomId</p>
+    <p><span>Check-in Date:</span> @Model.Reservation.Checkindate</p>
+    <p><span>Check-out Date:</span> @Model.Reservation.Checkoutdate</p>
+    <p><span>Total Price:</span> $@Model.TotalPrice</p>
+</div>
+
+<form asp-action="Payment" method="post" class="payment-form">
+    <input type="hidden" name="UserId" value="@Model.UserId" />
+    <input type="hidden" name="TotalPrice" value="@Model.TotalPrice" />
+    <input type="hidden" name="Reservation.RoomId" value="@Model.Reservation.RoomId" />
+    <input type="hidden" name="Reservation.Checkindate" value="@Model.Reservation.Checkindate" />
+    <input type="hidden" name="Reservation.Checkoutdate" value="@Model.Reservation.Checkoutdate" />
+    <button type="submit" class="btn-primary">Proceed to Payment</button>
+    <a asp-action="UserHome" class="btn-back">Back</a>
+
+</form>
+
+

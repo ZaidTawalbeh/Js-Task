@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TravelMate.Models.Hotel>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Hotels Page</title>
+</head>
+<body>
+    <p>
+        <button type="button" class="btn btn-success">
+            <a asp-action="Create">Create New</a>
+        </button>
+    </p>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Hotelname)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>
+            <th class="text-center"></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Hotelname)
+            </td>
+            <td class="text-center">
+                <img src=@Url.Content("~/Images/" + item.ImagePath)
+                             asp-append-version="true" style="border-radius:20%;"
+                             width="100" height="100" />
+            </td>
+            <td class="text-center">
+                    <button type="button" class="btn btn-info">
+                        <a asp-action="Edit" asp-route-id="@item.HotelId">Edit</a>
+                    </button>
+                    <button type="button" class="btn btn-warning">
+                        <a asp-action="Details" asp-route-id="@item.HotelId">Details</a>
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        <a asp-action="Delete" asp-route-id="@item.HotelId">Delete</a>
+                    </button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
